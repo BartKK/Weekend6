@@ -1,25 +1,14 @@
-// Usuwanie właściwości obiektu
+// Wyliczenia
 
-var animal = {
-
-gender: 'female'
+var obj = {
+  string: 'abc',
+  length: 24
 };
 
-console.log(animal.gender); // 'female'
+for(var property in obj) {
+  console.log(property); // nazwa właściwości
+  console.log(obj[property]); // wartość właściwości
+}
 
-// Jak pozbyć się właściwości z obiektu?
-
-// Delete
-
-delete animal.gender;
-console.log(animal.gender); // 'undefined'
-
-// Przypisanie wartości null
-
-animal.gender = 'female';
-console.log(animal.gender); // 'female'
-animal.gender = null;
-
-//doesnt work - właściwość ma wartość null i można ją wykryć poprzez użycie hasOwnProperty
-console.log(animal.gender); // 'null'
-console.log(animal.hasOwnProperty('gender'));
+console.log(Object.keys(obj)); // _proto_ nie będzie wylistowane, bo enumerable jest na false
+console.log(property.propertyIsEnumerable('__proto__'));
