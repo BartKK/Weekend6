@@ -1,15 +1,21 @@
+// Pin validator
 
-function accumulator(str) {
-  var response = [];
-  for(var i = 0; i < str.length; i++) {
-    var wordz = '';
-    for(var j = 0; j < i +1; j++) {
-      wordz += j===0 ? str[i].toUpperCase() : str[i].toLowerCase();
+function pinValidator(str) {
 
-    }
-    response.push(wordz);
+  var pinlen = str.length;
+  var isCorrectLength = (pinlen == 4);
+  var hasOnlyNumbers = str.match(/^\d+$/);
+
+  if(isCorrectLength && hasOnlyNumbers){
+    console.log(true);
   }
-  console.log(response);
+
+  console.log(false);
+
 }
 
-accumulator("abcd");
+pinValidator("abcd"); // false
+pinValidator("a123"); // false
+pinValidator("123"); // false
+pinValidator("12345"); // false
+pinValidator("1234"); // true
