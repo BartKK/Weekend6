@@ -56,3 +56,13 @@ person2.sayHi(); // Hi
 person1.name = 'asdasdasd'; // nie zadziała
 person2.name = 'asdaaszxczxcxzcsd'; // zadziała
 })();
+
+
+
+
+var numbers = [ 1, 2, 3, 4, 5, 6, 7];
+var result = numbers.reduce(function(a, b){
+  return a + b;
+});
+
+console.log(result);
