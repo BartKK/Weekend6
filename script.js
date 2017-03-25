@@ -1,23 +1,51 @@
-// Atrybuty wspólne
+// Konstruktory i prototypy
 
-// Object.freeze(); - po wykonaniu nie można dodawać ani usuwać właściwości
+function Computer() {
+  //
+}
 
-(function(){
+// new zwraca wartość
+var computer1 = new Computer;
+var computer2 = new Computer;
+
+
+console.log(computer1.constructor == Computer); // true
+
+
+////
+
+function Person(name) {
+  this.name = name;
+  this.sayHello = function () {
+    console.log('dasd');
+  };
+}
+
+
+var person1 = new Person('Piotr');
+var person2 = new Person('Konrad');
+
+console.log(person1.name); // 'Piotr'
+
+(function() {
   "use strict";
-var person = {
-  name: 'Konrad'
-};
-console.log(Object.isExtensible(person)); //True
-console.log(Object.isFrozen(person)); // False
 
-Object.freeze(person);
-console.log(Object.isFrozen(person)); // True
+  function Car(name) {
+    Object.defineProperty(this, 'name', {
+      get: function () {
+        return name
+      },
+      set: function (value) {
+        name = value
+      }
+    });
 
-person.sayGoodbye = function () {
-  console.log('say Goodbye', this.name);
-};
-console.log('sayGoodbye' in person); // False
+       this.brrum = function () {
+         console.log("Bruuuum");
+       }
 
-person.name = 'Piotr';
-console.log(person.name); // Konrad
+  }
+
+  var car1 = new Car('Szybki');
+  car1.brrum(); // "Bruuuum"
 })();
