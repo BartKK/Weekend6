@@ -1,14 +1,21 @@
-// Definiowanie właściwości
+// Wykrywanie właściwości
 
-var person = {
-  name: 'Kuba'
+// if(person.age){
+//
+// }
+
+var car = {
+  manufacturer: 'Ford'
 }
 
-person.age = 12;
+console.log('manufacturer' in car); // True
 
-// [[Put]] Wewnętrzna metoda JS do tworzenia nowych właściwości
+// Warunek if zwróci false gdy będzie równe: null, undefined, 0, false, NaN, ''
 
-// [[Set]]
-person.name = 'Bartek';
+var person = {
+  name: 'Maciej'
+}
 
-console.log(person.name); // 'Bartek'
+console.log('toString' in person);
+
+console.info(person.hasOwnProperty('name'));
