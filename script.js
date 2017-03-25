@@ -41,13 +41,18 @@ console.log(person2.arrPerson); // ['czerwony', 'niebieski']
   function Person(name) {
     this.name = name;
   }
-  //Definiowanie wielu metod na raz w prototypie
-  Person.prototype = {
-    sayHello: function () {
-      // asdasdasd
-    },
-    toString: function () {
-      // asdzfzs
-    }
-  }
+var person1 = new Person('Zosia');
+var person2 = new Person('Tosia');
+
+Object.freeze(person1);
+
+Person.prototype.sayHi = function() {
+  console.log('Hi');
+};
+
+person1.sayHi(); // Hi
+person2.sayHi(); // Hi
+
+person1.name = 'asdasdasd'; // nie zadziała
+person2.name = 'asdaaszxczxcxzcsd'; // zadziała
 })();
