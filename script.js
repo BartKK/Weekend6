@@ -1,17 +1,15 @@
 
+function accumulator(str) {
+  var response = [];
+  for(var i = 0; i < str.length; i++) {
+    var wordz = '';
+    for(var j = 0; j < i +1; j++) {
+      wordz += j===0 ? str[i].toUpperCase() : str[i].toLowerCase();
 
-
-var numbers = [5, 1, 2, 3, 0, 1, 5, 0, 2];
-
-var uniqueNumbers = [];
-
-    for(var i in numbers){
-        if(uniqueNumbers.indexOf(numbers[i]) === -1){
-            uniqueNumbers.push(numbers[i]);
-        }
     }
-var result = uniqueNumbers.reduce(function(a, b){
-  return a + b;
-});
+    response.push(wordz);
+  }
+  console.log(response);
+}
 
-console.log(result);
+accumulator("abcd");
