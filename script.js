@@ -1,52 +1,71 @@
-// Dziedziczenie obiektów
+// Dziedziczenie konstruktorów
 
-var book = {
 
-    price: 44
-};
-
-var book1 = Object.create(Object.prototype, {
-    title: {
-        value: 'Some another title',
-        enumerable: true,
-        configurable: true,
-        writable: true,
-    }
-});
-
-console.log(book);
-console.log(book1);
-
-//
-
-var person1 = {
-    name: 'Zuzia',
-    sayHello: function () {
-      console.log(this.name)
-    }
-};
-
-var person2 = Object.create(person1, {
-  name: {
-    value: 'Ola',
-    enumerable: true,
-    configurable: true,
-    writable: true,
-
+//human
+  function VeryFriendlyConstructor () {
+    //sdfsdf
   }
-});
 
-person1.sayHello(); //
-person2.sayHello(); //
+  // js
 
-console.log(person1.hasOwnProperty('sayHello')); // True
-console.log(person1.isPrototypeOf(person2)); // True
-console.log(person2.isPrototypeOf(person1)); // false
-console.log(person2.hasOwnProperty('sayHello')); // false
+// !!VeryFriendlyConstructor jest podtypem Object!!
+// !!Object jest supertypem VeryFriendlyConstructor!!
+  VeryFriendlyConstructor.prototype = Object.create(Object.prototype, {
+    constructor: {
+      value: VeryFriendlyConstructor,
+      configurable: true,
+      writable: true,
+      enumerable: true
+    }
+  });
+
 
 //
-// unikanie kolizji nazw - konstruktor 'null'
-var emptyObject = Object.create(null);
 
-console.log('toString' in empyObject);
-console.log('valueOf' in emptyObject);
+function Rectangle(length, width) {
+console.log('Został wywołany Rectangle')
+  this.length = length;
+  this.width = width;;
+}
+
+Rectangle.prototype.getArea = function () {
+  return this.length * this.width;
+};
+
+Rectangle.prototype.toString = function () {
+  return '[Rectangle' + this.length + ' ' + this.width + ']';
+}
+
+
+function Square(size) {
+  this.length = size;
+  this.width = size;
+}
+
+//
+
+Square.prototype = new Rectangle();
+Square.prototype.constructor = Square;
+
+Square.prototype.toString = function () {
+  return '[Square ' + this.length + ' na ' + this.width + ']'
+};
+
+var rect = new Rectangle(5, 10);
+var square = new Square(6);
+
+
+console.log(rect.getArea()); // 50
+
+console.log(square.getArea()); // 36
+
+console.log(rect.toString()); // 'Rectangle'
+console.log(square.toString()); // 'Square'
+
+console.log(rect instanceof Rectangle); // true
+console.log(rect instanceof Square); // False
+console.log(rect instanceof Object); // true
+
+console.log(square instanceof Square); // True
+console.log(square instanceof Rectangle); // True
+console.log(square instanceof Object); // True
