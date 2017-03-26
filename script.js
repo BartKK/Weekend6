@@ -1,34 +1,36 @@
-// Wzorzec modułu
+var Person = (function() {
+    var age = 23;
 
-var sampleObj = (function () {
-  // definiujemy prywatne dane/informacje
+    function InnerPerson(name) {
+        this.name = name;
 
-  return {
-    //upublicznione/udostępnione
-  }
-})();
-
-var person = (function () {
-  var age = 25;
-
-  return {
-    name: 'Zosia',
-    getAge: function () {
-      return age;
-    },
-    growOlder: function () {
-      age++;
     }
-  }
+
+    InnerPerson.prototype.getAge = function() {
+        return age;
+
+    };
+
+    InnerPerson.prototype.growOlder = function() {
+        age++;
+    };
+
+    return InnerPerson;
+
+
 })();
 
-console.log(person.name); // 'Zosia'
-console.log(person.getAge()); // 25
+var person1 = new Person('Paweł');
+var person2 = new Person('Gaweł');
 
-person.age = 50;
+console.log(person1.name);
+console.log(person1.getAge());
 
-console.log(person.getAge()); // 25
+console.log(person2.name);
+console.log(person2.getAge());
 
-person.growOlder();
 
-console.log(person.getAge()); // 26
+person1.growOlder();
+
+console.log(person1.getAge());
+console.log(person2.getAge());
