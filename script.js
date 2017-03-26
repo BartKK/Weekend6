@@ -1,21 +1,10 @@
-// Pin validator
+//sort string
 
-function pinValidator(str) {
 
-  var pinlen = str.length;
-  var isCorrectLength = (pinlen == 4);
-  var hasOnlyNumbers = str.match(/^\d+$/);
+var sortString = ['fdsaas', 'fdss', 'fdsdfff', 'fdssdf'];
 
-  if(isCorrectLength && hasOnlyNumbers){
-    console.log(true);
-  }
+sortString.sort(function(a,b){
+  return b.length - a.length;
+});
 
-  console.log(false);
-
-}
-
-pinValidator("abcd"); // false
-pinValidator("a123"); // false
-pinValidator("123"); // false
-pinValidator("12345"); // false
-pinValidator("1234"); // true
+console.log(sortString);
