@@ -1,31 +1,34 @@
-// Singelton
+// Wzorzec modułu
 
-var Singelton = (function () {
-  console.count();
-
-  var instance;
-
-  function createInstance() {
-    var obj = new Object('Zostałem stworzony');
-    return obj;
-  }
+var sampleObj = (function () {
+  // definiujemy prywatne dane/informacje
 
   return {
-    getInstance: function () {
-      if(!instance) {
-        console.log('Zwracam instancję')
-        createInstance();
-      }
-      return instance
+    //upublicznione/udostępnione
+  }
+})();
+
+var person = (function () {
+  var age = 25;
+
+  return {
+    name: 'Zosia',
+    getAge: function () {
+      return age;
+    },
+    growOlder: function () {
+      age++;
     }
   }
 })();
-function init() {
-  var instance1 = Singelton.getInstance();
-  var instance2 = Singelton.getInstance();
 
-  console.log(instance1 == instance2)
-}
+console.log(person.name); // 'Zosia'
+console.log(person.getAge()); // 25
 
-init();
-Singelton.getInstance
+person.age = 50;
+
+console.log(person.getAge()); // 25
+
+person.growOlder();
+
+console.log(person.getAge()); // 26
