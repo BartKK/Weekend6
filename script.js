@@ -1,10 +1,11 @@
-//sort string
+// Dziedziczenie - (prototype chaining)
 
 
-var sortString = ['fdsaas', 'fdss', 'fdsdfff', 'fdssdf'];
+var book = {
 
-sortString.sort(function(a,b){
-  return b.length - a.length;
-});
+  title: 'Prototype chaining - inheritance'
+}
 
-console.log(sortString);
+var prototype = Object.getPrototypeOf(book);
+
+console.log(prototype == Object.prototype); // true
