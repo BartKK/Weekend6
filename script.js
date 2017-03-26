@@ -1,31 +1,31 @@
-// Przywłaszczanie konstruktorów
+// Singelton
 
-function Rectangle(length, width) {
-this.length = length;
-this.width = width;
+var Singelton = (function () {
+  console.count();
 
-}
+  var instance;
 
-Rectangle.prototype.getArea = function () {
-  return this.length * this.width;
-};
-
-Rectangle.prototype.toString = function () {
-  return 'Rectangle ' + this.length + ' x ' + this.width;
-};
-
-function Square(size) {
-  Rectangle.call(this, size, size)
-}
-
-Square.prototype = Object.create(Rectangle.prototype, {
-  constructor: {
-    value: Square
+  function createInstance() {
+    var obj = new Object('Zostałem stworzony');
+    return obj;
   }
-});
 
-Square.prototype.toString = function () {
-  return 'Square ' + this.length + ' x ' + this.width;
-};
+  return {
+    getInstance: function () {
+      if(!instance) {
+        console.log('Zwracam instancję')
+        createInstance();
+      }
+      return instance
+    }
+  }
+})();
+function init() {
+  var instance1 = Singelton.getInstance();
+  var instance2 = Singelton.getInstance();
 
-var square = new Square(6);
+  console.log(instance1 == instance2)
+}
+
+init();
+Singelton.getInstance
